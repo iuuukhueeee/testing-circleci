@@ -21,10 +21,17 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.iuuukhueeee.circleci"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "834742d1-afae-4b8b-a017-cbac8204d4df"
+      }
+    },
+    "owner": "iuuukhueeee"
   }
 }

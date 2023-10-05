@@ -1,0 +1,38 @@
+version: 2.1
+
+executors:
+  default:
+    docker:
+      - image: cimg/node:lts
+    working_directory: ~/repo
+
+jobs:
+  eas_build:
+    executor: default
+    parameters:
+      message:
+        type: string
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: npm ci
+      - run:
+          name: Trigger build
+          command: npx eas-cli build --platform << parameters.message >> --non-interactive
+
+workflows:
+  build_app_android:
+    jobs:
+      - eas_build:
+          message: android
+          filters:
+            branches:
+              only: master
+  build_app_ios:
+    jobs:
+      - eas_build:
+          message: ios
+          filters:
+            branches:
+              only: master
